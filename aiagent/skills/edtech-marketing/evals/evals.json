@@ -1,0 +1,64 @@
+[
+  {
+    "id": "et-001",
+    "name": "Full EdTech marketing strategy",
+    "prompt": "Build an EdTech marketing strategy to grow student signups for our product.",
+    "expected_behavior": [
+      "Reads .agents/<productname>/product.md for curriculum, pricing, and geography",
+      "Researches the market live (trends, competitor channels, exam calendar, parent/teacher sentiment)",
+      "Presents a brief and asks whether GTM is B2C or B2B2C, plus exam alignment and biggest funnel gap",
+      "Designs each touchpoint for a specific stakeholder (student, parent, teacher, admin)",
+      "Anchors campaign timing to the real academic/exam calendar",
+      "References edtech-asia-market.md"
+    ],
+    "tags": ["core", "edtech", "student-acquisition"]
+  },
+  {
+    "id": "et-002",
+    "name": "Multi-stakeholder messaging",
+    "prompt": "How should our message differ for students vs parents vs teachers?",
+    "expected_behavior": [
+      "Maps the distinct motivation and fear of each stakeholder",
+      "Gives a stakeholder-specific message and primary channel for each",
+      "Leads with outcomes (pass rates, results) not features",
+      "Does not collapse everyone into a generic 'user'"
+    ],
+    "tags": ["stakeholders", "messaging"]
+  },
+  {
+    "id": "et-003",
+    "name": "Academic calendar campaign planning",
+    "prompt": "When should we spend the most on ads during the year?",
+    "expected_behavior": [
+      "Maps spend to exam run-ups and term starts for the target region",
+      "Concentrates peak budget on board/final-exam season",
+      "Assigns a campaign theme and budget weight per period",
+      "Verifies current-year exam dates rather than assuming"
+    ],
+    "tags": ["seasonality", "academic-calendar", "budget"]
+  },
+  {
+    "id": "et-004",
+    "name": "B2C vs B2B2C decision",
+    "prompt": "Should we sell directly to parents or go through schools?",
+    "expected_behavior": [
+      "Compares B2C and B2B2C on CAC, LTV, sales cycle, trust signal, and channel",
+      "Recommends a primary mode (or hybrid) with rationale tied to the product",
+      "Notes how B2C proof can unlock B2B2C sales",
+      "Gives a concrete next step for the recommended mode"
+    ],
+    "tags": ["b2c", "b2b2c", "gtm"]
+  },
+  {
+    "id": "et-005",
+    "name": "Freemium to paid conversion",
+    "prompt": "Our free users aren't converting to paid. How do we fix it?",
+    "expected_behavior": [
+      "Builds a trigger-based conversion flow (signup, repeat use, exam proximity, trial expiry)",
+      "Uses exam-date urgency as a primary conversion lever",
+      "Specifies channel and message per trigger",
+      "Recommends marketing-psychology for deeper conversion/pricing levers"
+    ],
+    "tags": ["conversion", "freemium", "retention"]
+  }
+]

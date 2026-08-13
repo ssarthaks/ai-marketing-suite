@@ -1,0 +1,51 @@
+[
+  {
+    "id": "ee-001",
+    "name": "Score content for E-E-A-T",
+    "prompt": "Score this article against Google's E-E-A-T guidelines.",
+    "expected_behavior": [
+      "Reads .agents/<productname>/product.md for real brand authority and authors",
+      "Researches what currently ranks to calibrate the niche's authority bar",
+      "Scores Experience, Expertise, Authoritativeness, Trustworthiness 1-10 with evidence",
+      "Determines whether the topic is YMYL and raises the bar accordingly",
+      "Returns weaknesses, strengths, a Helpful-Content check, and a PUBLISH/REVISE/REWRITE verdict"
+    ],
+    "tags": ["core", "eeat", "quality"]
+  },
+  {
+    "id": "ee-002",
+    "name": "YMYL stricter threshold",
+    "prompt": "Is this health-advice article good enough to publish?",
+    "expected_behavior": [
+      "Flags the content as YMYL and applies a stricter trust threshold",
+      "Weights Trustworthiness most heavily",
+      "Demands credentials, citations, and accuracy",
+      "Is explicit that the bar is higher because it is YMYL"
+    ],
+    "tags": ["ymyl", "trust"]
+  },
+  {
+    "id": "ee-003",
+    "name": "Experience signal detection",
+    "prompt": "Does this content show real first-hand experience?",
+    "expected_behavior": [
+      "Looks for anecdotes, original data, screenshots, or direct involvement",
+      "Distinguishes demonstrated experience from generic advice",
+      "Cites the specific passage (or its absence) as evidence",
+      "Suggests concrete ways to add genuine experience signals"
+    ],
+    "tags": ["experience", "first-hand"]
+  },
+  {
+    "id": "ee-004",
+    "name": "Helpful Content / people-first check",
+    "prompt": "Is this people-first or just written for search engines?",
+    "expected_behavior": [
+      "Assesses originality and depth vs. rehash",
+      "Flags AI-filler or search-engine-first patterns",
+      "Gives actionable fixes to make it people-first",
+      "Does not invent author credentials to lift the score"
+    ],
+    "tags": ["helpful-content", "people-first"]
+  }
+]

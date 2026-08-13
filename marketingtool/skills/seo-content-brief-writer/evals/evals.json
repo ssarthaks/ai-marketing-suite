@@ -1,0 +1,27 @@
+[
+  {
+    "id": "scbw-001",
+    "name": "Generate an SEO content brief",
+    "prompt": "Create an SEO content brief for our new blog post about 'machine learning in education'.",
+    "expected_behavior": [
+      "Reads .agents/<productname>/product.md for product and audience context",
+      "Identifies the search intent and target persona",
+      "Provides title and meta description recommendations",
+      "Creates a structured outline with H2 and H3 tags",
+      "Lists primary, secondary, and semantic keywords to include",
+      "Recommends internal and external links"
+    ],
+    "tags": ["seo", "content-brief", "writing"]
+  },
+  {
+    "id": "scbw-002",
+    "name": "Update brief based on competitor gap",
+    "prompt": "Update the brief to cover gaps found in competitor content.",
+    "expected_behavior": [
+      "Analyzes competitor topics and subheadings",
+      "Adds new H2s/H3s to the outline to cover missing information",
+      "Ensures the brief is comprehensive and authoritative"
+    ],
+    "tags": ["content-gap", "competitor-analysis"]
+  }
+]

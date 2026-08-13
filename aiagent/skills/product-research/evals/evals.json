@@ -1,0 +1,71 @@
+[
+  {
+    "id": "pr-001",
+    "name": "Deep product research for our product",
+    "prompt": "Do a product research for our product.com.np",
+    "expected_behavior": [
+      "Checks for .agents/<productname>/product.md first",
+      "Researches the our product website, app stores, and social media",
+      "Produces a 13-section Product Research Brief",
+      "Includes Curriculum Board syllabus alignment as a key differentiator",
+      "Identifies pricing tiers (Free, Individual Subject, Bundle)",
+      "Lists [Local Payment Gateway] and [Local Payment Gateway] as payment methods",
+      "Covers all 5 target segments (Students, Teachers, Parents, School Leaders, Educators)",
+      "Mentions 7 international awards",
+      "Identifies positioning gaps (no public pricing page, weak social proof)"
+    ],
+    "tags": ["core", "deep-scan", "target region"]
+  },
+  {
+    "id": "pr-002",
+    "name": "Quick scan with specific focus",
+    "prompt": "Quick product research for our product target region, focus on pricing and user sentiment",
+    "expected_behavior": [
+      "Performs a quick scan (not deep research)",
+      "Focuses specifically on pricing tiers and packaging",
+      "Highlights subject-based pricing model vs platform-based",
+      "Captures user sentiment from available reviews",
+      "Notes the lack of a public pricing page as a gap",
+      "Uses chatty, interactive approach — asks clarifying questions"
+    ],
+    "tags": ["quick-scan", "pricing", "target region"]
+  },
+  {
+    "id": "pr-003",
+    "name": "Feature-to-benefit matrix",
+    "prompt": "Build a feature-to-benefit matrix for our product target region's interactive video product",
+    "expected_behavior": [
+      "Lists all core features (Interactive Videos, Testpaper, Classroom, Group Chat, Reports)",
+      "Maps each feature to user-facing benefits",
+      "Segments benefits by persona (Student, Teacher, Parent, School Leader)",
+      "Highlights dialogic pedagogy as the core differentiator",
+      "Mentions IVy and APollo proprietary technology"
+    ],
+    "tags": ["features", "benefits", "personas"]
+  },
+  {
+    "id": "pr-004",
+    "name": "Product research without URL",
+    "prompt": "Research our product",
+    "expected_behavior": [
+      "Checks .agents/<productname>/product.md for existing context",
+      "If found, uses it to identify the product as our product",
+      "If not found, asks for the product URL or recommends running product-marketing skill first",
+      "Does not hallucinate product details"
+    ],
+    "tags": ["context-check", "no-url"]
+  },
+  {
+    "id": "pr-005",
+    "name": "Competitive positioning gap analysis",
+    "prompt": "Identify positioning gaps for our product target region compared to free YouTube channels and Free Online Study Notes",
+    "expected_behavior": [
+      "Researches both competitors (YouTube channels, Free Online Study Notes)",
+      "Identifies EduPlatform's advantages (interactive/dialogic format, testpapers, reports, Curriculum Board mapping)",
+      "Identifies EduPlatform's weaknesses relative to free alternatives (price barrier, limited social proof)",
+      "Provides actionable recommendations to close gaps",
+      "Follows iterative back-and-forth approach"
+    ],
+    "tags": ["positioning", "competitive", "target region"]
+  }
+]

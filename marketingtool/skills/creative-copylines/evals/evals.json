@@ -1,0 +1,63 @@
+[
+  {
+    "id": "cc-001",
+    "name": "Creative copylines generation",
+    "prompt": "Write some creative copylines and taglines for our new feature using PAS.",
+    "expected_behavior": [
+      "Translates brand strategy into persuasive copy",
+      "Uses the requested framework (e.g., PAS, AIDA)",
+      "Evaluates emotional resonance before logical arguments",
+      "Outputs punchy, clear, and brief copy",
+      "References creative-copylines-framework.md"
+    ],
+    "tags": ["core", "copywriting", "frameworks"]
+  },
+  {
+    "id": "cc-002",
+    "name": "Tagline options",
+    "prompt": "Give us 5 tagline options for our brand.",
+    "expected_behavior": [
+      "Pulls voice and positioning from the loaded brand context",
+      "Delivers distinct, punchy taglines (no weak adjectives or passive voice)",
+      "Briefly notes the angle/benefit behind each option",
+      "Stays on-brand rather than generic"
+    ],
+    "tags": ["tagline", "brand"]
+  },
+  {
+    "id": "cc-003",
+    "name": "Framework matched to awareness level",
+    "prompt": "Write cold-traffic ad copy for people who don't know they have this problem.",
+    "expected_behavior": [
+      "Selects a framework matched to the unaware/pain-aware audience (PAS or PASTOR)",
+      "Leads with the problem and agitation before the solution",
+      "Explains why this framework fits the awareness level (Schwartz)",
+      "Keeps copy concrete and benefit-led"
+    ],
+    "tags": ["awareness", "framework-fit"]
+  },
+  {
+    "id": "cc-004",
+    "name": "Feature-to-benefit copy (FAB)",
+    "prompt": "Turn our feature list into benefit-driven copy.",
+    "expected_behavior": [
+      "Applies FAB: Feature -> Advantage -> Benefit",
+      "Translates each technical feature into an emotional or financial payoff",
+      "Avoids feature-dumping without benefits",
+      "Uses real product features from context, not invented ones"
+    ],
+    "tags": ["fab", "benefits"]
+  },
+  {
+    "id": "cc-005",
+    "name": "Landing page hero copy",
+    "prompt": "Write hero-section copy for our landing page.",
+    "expected_behavior": [
+      "States the framework used (e.g., AIDA or PPPP)",
+      "Opens with a hook that reflects the positioning statement",
+      "Includes one clear primary CTA",
+      "Marks any proof/stat as a placeholder rather than fabricating it"
+    ],
+    "tags": ["landing-page", "hero", "cta"]
+  }
+]

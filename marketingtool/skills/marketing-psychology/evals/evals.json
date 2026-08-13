@@ -1,0 +1,65 @@
+[
+  {
+    "id": "psy-001",
+    "name": "Apply psychology to parental buying behavior",
+    "prompt": "How do we convince [Local Language] parents to pay for EduPlatform instead of traditional tuition?",
+    "expected_behavior": [
+      "Applies the 'Sunk Cost Fallacy' of private tuition",
+      "Uses Mental Accounting to reframe the cost (e.g., 'less than a cup of chiya a day')",
+      "Leverages Authority Bias (Curriculum Board syllabus alignment, international awards)",
+      "Addresses Loss Aversion (fear of child failing local exam/local exam)",
+      "References marketing-psychology-framework.md"
+    ],
+    "tags": ["core", "parents", "pricing", "target region"]
+  },
+  {
+    "id": "psy-002",
+    "name": "Optimize pricing tiers using psychology",
+    "prompt": "How should we structure our pricing packages to maximize revenue?",
+    "expected_behavior": [
+      "Recommends the Decoy Effect (Good-Better-Best pricing)",
+      "Applies Charm Pricing/Left-Digit Bias for [Local Currency] values",
+      "Suggests bundling subjects to increase perceived value",
+      "Explains the psychological rationale behind the structure"
+    ],
+    "tags": ["pricing", "decoy-effect"]
+  },
+  {
+    "id": "psy-003",
+    "name": "Increase student engagement using B=MAP",
+    "prompt": "Students sign up but don't finish the videos. How do we fix this?",
+    "expected_behavior": [
+      "Applies the BJ Fogg Behavior Model (B=MAP)",
+      "Analyzes Motivation (gamification, leaderboards)",
+      "Analyzes Ability/Friction (video length, bandwidth, language)",
+      "Analyzes Prompts (SMS/messaging app reminders, Zeigarnik effect loops)",
+      "Provides actionable product/marketing tweaks"
+    ],
+    "tags": ["engagement", "fogg-model", "students"]
+  },
+  {
+    "id": "psy-004",
+    "name": "Social proof for B2B school sales",
+    "prompt": "What psychological triggers work best when selling to school principals?",
+    "expected_behavior": [
+      "Applies Authority Bias (PABSON endorsements, awards)",
+      "Uses Bandwagon Effect ('Join 50+ innovative schools')",
+      "Addresses Status-Quo Bias (reducing the friction of changing systems)",
+      "Frames ROI in terms of enrollment growth and parent satisfaction"
+    ],
+    "tags": ["b2b", "schools", "social-proof"]
+  },
+  {
+    "id": "psy-005",
+    "name": "General psychology request",
+    "prompt": "Give me some psychological principles to use in our marketing",
+    "expected_behavior": [
+      "Checks .agents/<productname>/product.md for product context",
+      "Recognizes product as our product",
+      "Asks task-specific intake questions (behavior, audience, journey stage)",
+      "Presents 3-4 highly relevant principles (e.g., Loss Aversion, Endowed Progress)",
+      "Follows iterative chatty approach"
+    ],
+    "tags": ["general", "intake"]
+  }
+]

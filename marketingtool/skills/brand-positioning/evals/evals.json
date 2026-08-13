@@ -1,0 +1,65 @@
+[
+  {
+    "id": "bp-001",
+    "name": "Brand positioning creation",
+    "prompt": "Help us create a brand positioning statement and find market gaps.",
+    "expected_behavior": [
+      "Checks for .agents/<productname>/product.md context",
+      "Performs deep web research on competitor clustering",
+      "Proposes 2-3 potential 'white space' opportunities",
+      "Uses Value Proposition Canvas (Jobs-to-be-done, Pains, Gains)",
+      "Uses Perceptual Mapping",
+      "Formats output using Ries & Trout formula",
+      "References brand-positioning-framework.md"
+    ],
+    "tags": ["core", "positioning", "market-gaps"]
+  },
+  {
+    "id": "bp-002",
+    "name": "Value proposition definition",
+    "prompt": "Write a clear value proposition for our product.",
+    "expected_behavior": [
+      "Maps customer Jobs-to-be-Done, Pains, and Gains first",
+      "Aligns pain relievers and gain creators to the offering",
+      "Produces a concise, jargon-free public-facing value proposition",
+      "Ties the value prop to the deepest researched pain point"
+    ],
+    "tags": ["value-proposition", "vpc"]
+  },
+  {
+    "id": "bp-003",
+    "name": "Perceptual map and white space",
+    "prompt": "Where is the open space in our market we can own?",
+    "expected_behavior": [
+      "Builds a perceptual map on two meaningful axes",
+      "Plots real, researched competitors and their cluster",
+      "Identifies defensible white space the product can credibly own",
+      "Validates that customers actually want that position"
+    ],
+    "tags": ["perceptual-map", "white-space"]
+  },
+  {
+    "id": "bp-004",
+    "name": "Positioning statement (Ries & Trout)",
+    "prompt": "Give us a one-line positioning statement.",
+    "expected_behavior": [
+      "Uses the For/Who/Is-a/That/Unlike/Our-product formula",
+      "Names a specific target, category, and differentiator",
+      "Avoids 'better and cheaper' non-positions",
+      "Keeps it concise and memorable"
+    ],
+    "tags": ["positioning-statement", "ries-trout"]
+  },
+  {
+    "id": "bp-005",
+    "name": "Repositioning against a competitor",
+    "prompt": "How do we position against [competitor] who dominates the category?",
+    "expected_behavior": [
+      "Researches the incumbent's positioning and weaknesses",
+      "Finds an attribute the incumbent cannot easily claim",
+      "Recommends a flanking position rather than a head-on copy",
+      "Recommends competitors-research / competitor-gap-finder for depth"
+    ],
+    "tags": ["repositioning", "competitive"]
+  }
+]

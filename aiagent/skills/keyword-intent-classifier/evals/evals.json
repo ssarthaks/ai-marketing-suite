@@ -1,0 +1,50 @@
+[
+  {
+    "id": "ki-001",
+    "name": "Classify a keyword list",
+    "prompt": "Classify these keywords by intent and tell us what to prioritize.",
+    "expected_behavior": [
+      "Reads .agents/<productname>/product.md to ground commercial value",
+      "Inspects live SERPs for ambiguous/high-value terms instead of guessing intent",
+      "Classifies each keyword by intent, journey stage, and AI-answer risk",
+      "Returns prioritized Targets, Authority keywords, and Deprioritize lists",
+      "Notes zero-click AI Overview risk where present"
+    ],
+    "tags": ["core", "intent", "prioritization"]
+  },
+  {
+    "id": "ki-002",
+    "name": "Intent from the SERP, not the string",
+    "prompt": "Is 'best exam prep app' commercial or informational?",
+    "expected_behavior": [
+      "Checks the live SERP's dominant result type to infer intent",
+      "Avoids classifying purely from the keyword wording",
+      "Explains the evidence behind the classification"
+    ],
+    "tags": ["serp", "intent"]
+  },
+  {
+    "id": "ki-003",
+    "name": "Zero-click / AI risk triage",
+    "prompt": "Which of these keywords are at risk from AI answers?",
+    "expected_behavior": [
+      "Rates AI-answer risk HIGH/MEDIUM/LOW per keyword",
+      "Flags definition/fact/simple-how-to terms as high zero-click risk",
+      "Recommends defending high-value terms via aeo-content-optimizer",
+      "Advises deprioritizing high-risk + low-value terms"
+    ],
+    "tags": ["zero-click", "ai-risk"]
+  },
+  {
+    "id": "ki-004",
+    "name": "Clustering to avoid cannibalization",
+    "prompt": "Group these keywords so we don't write competing pages.",
+    "expected_behavior": [
+      "Groups near-duplicate intents into clusters",
+      "Recommends one target page per intent cluster",
+      "Flags cannibalization risk across the list",
+      "Hands off to ai-seo / seo-content-brief-writer for execution"
+    ],
+    "tags": ["clustering", "cannibalization"]
+  }
+]

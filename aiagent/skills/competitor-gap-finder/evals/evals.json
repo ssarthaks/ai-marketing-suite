@@ -1,0 +1,51 @@
+[
+  {
+    "id": "cg-001",
+    "name": "Find gaps vs a competitor page",
+    "prompt": "Why does this competitor outrank us for our target keyword?",
+    "expected_behavior": [
+      "Reads .agents/<productname>/product.md for brand-accurate recommendations",
+      "Fetches both the user's page and the competitor page(s) live",
+      "If only a keyword is given, pulls the top 2-3 ranking pages from the SERP",
+      "Extracts entities and compares coverage, depth, and structure",
+      "Returns a prioritized gap report (HIGH/MEDIUM/LOW) plus a defensive note on existing strengths"
+    ],
+    "tags": ["core", "content-gap", "competitive"]
+  },
+  {
+    "id": "cg-002",
+    "name": "Entity and sub-topic extraction",
+    "prompt": "What topics does the competitor cover that we don't?",
+    "expected_behavior": [
+      "Builds parallel entity lists for both pages",
+      "Identifies missing concepts, data points, tools, examples, and FAQs",
+      "Reports only entities actually present in the fetched pages",
+      "Specifies where in our page to add each gap"
+    ],
+    "tags": ["entities", "sub-topics"]
+  },
+  {
+    "id": "cg-003",
+    "name": "Depth comparison",
+    "prompt": "Where is the competitor more thorough than us?",
+    "expected_behavior": [
+      "Compares section-level depth and word counts",
+      "Notes where the competitor uses examples/data we lack",
+      "Prioritizes the gaps that most affect ranking",
+      "Recommends a stronger, original treatment rather than copying"
+    ],
+    "tags": ["depth", "thoroughness"]
+  },
+  {
+    "id": "cg-004",
+    "name": "Action plan to close gaps",
+    "prompt": "Give us a plan to beat this page.",
+    "expected_behavior": [
+      "Sequences edits by impact, highest first",
+      "Estimates additional words/sections needed",
+      "Keeps recommendations serving the searcher, not bloating word count",
+      "Hands off to seo-content-brief-writer to brief the rewrite"
+    ],
+    "tags": ["action-plan", "content-refresh"]
+  }
+]

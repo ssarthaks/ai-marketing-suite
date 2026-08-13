@@ -1,0 +1,451 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ─────────────────────────────────────────────────────────────
+// Auth & Tenancy
+// ─────────────────────────────────────────────────────────────
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  image        String?
+  onboardedAt  DateTime?
+
+  memberships        WorkspaceMember[]
+  campaigns          Campaign[]
+  contentGenerations ContentGeneration[]
+  assets             Asset[]
+  landingPages       LandingPage[]
+  leadMagnets        LeadMagnet[]
+  activities         Activity[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email])
+}
+
+model Workspace {
+  id   String @id @default(cuid())
+  name String
+  slug String @unique
+  // Links this workspace to a product's docs (.agents/<productKey>/) in the
+  // shared AiAgent markdown_files table. Null for personal (non-project) workspaces.
+  productKey String? @unique
+
+  members            WorkspaceMember[]
+  campaigns          Campaign[]
+  contentGenerations ContentGeneration[]
+  assets             Asset[]
+  landingPages       LandingPage[]
+  leadMagnets        LeadMagnet[]
+  leads              Lead[]
+  activities         Activity[]
+  settings           Settings?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum WorkspaceRole {
+  OWNER
+  ADMIN
+  MEMBER
+}
+
+model WorkspaceMember {
+  id          String        @id @default(cuid())
+  role        WorkspaceRole @default(OWNER)
+  userId      String
+  workspaceId String
+
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([workspaceId, userId])
+  @@index([userId])
+}
+
+/// Single-use SSO token identifiers. A persisted JTI prevents a captured
+/// short-lived bearer token from being replayed on another server instance.
+model SsoTokenUse {
+  jti       String   @id
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([expiresAt])
+}
+
+// ─────────────────────────────────────────────────────────────
+// Campaigns
+// ─────────────────────────────────────────────────────────────
+
+enum CampaignStatus {
+  DRAFT
+  ACTIVE
+  PAUSED
+  COMPLETED
+  ARCHIVED
+}
+
+enum VisibilityStatus {
+  PUBLIC
+  PRIVATE
+  SHARED
+}
+
+model Campaign {
+  id          String         @id @default(cuid())
+  title       String
+  description String?        @db.Text
+  audience    String?
+  product     String?
+  objective   String?
+  budget      Decimal?       @db.Decimal(12, 2)
+  startDate   DateTime?
+  endDate     DateTime?
+  status      CampaignStatus @default(DRAFT)
+  notes       String?        @db.Text
+
+  workspaceId String
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  createdById String?
+  createdBy   User?     @relation(fields: [createdById], references: [id], onDelete: SetNull)
+
+  visibility        VisibilityStatus @default(PUBLIC)
+  sharedWithUserIds String[]         @default([])
+
+  contentGenerations ContentGeneration[]
+  assets             Asset[]
+  landingPages       LandingPage[]
+  leadMagnets        LeadMagnet[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([workspaceId, status])
+  @@index([workspaceId, createdAt(sort: Desc)])
+}
+
+// ─────────────────────────────────────────────────────────────
+// AI Content
+// ─────────────────────────────────────────────────────────────
+
+enum ContentType {
+  BLOG_POST
+  INSTAGRAM_POST
+  FACEBOOK_POST
+  LINKEDIN_POST
+  EMAIL
+  GOOGLE_ADS
+  META_ADS
+  LANDING_PAGE_COPY
+  CTA
+  SEO_META
+  KEYWORDS
+  NEWSLETTER
+  TWEET_THREAD
+  YOUTUBE_SCRIPT
+  PRESS_RELEASE
+}
+
+model ContentGeneration {
+  id         String      @id @default(cuid())
+  title      String
+  type       ContentType
+  tone       String?
+  audience   String?
+  goal       String?
+  prompt     String      @db.Text
+  content    String      @db.Text
+  model      String      @default("deepseek-chat")
+  tokensUsed Int?
+  isFavorite Boolean     @default(false)
+  collection String?
+
+  workspaceId String
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  campaignId  String?
+  campaign    Campaign? @relation(fields: [campaignId], references: [id], onDelete: SetNull)
+  createdById String?
+  createdBy   User?     @relation(fields: [createdById], references: [id], onDelete: SetNull)
+
+  visibility        VisibilityStatus @default(PUBLIC)
+  sharedWithUserIds String[]         @default([])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([workspaceId, createdAt(sort: Desc)])
+  @@index([workspaceId, type])
+  @@index([workspaceId, isFavorite])
+  @@index([campaignId])
+}
+
+// ─────────────────────────────────────────────────────────────
+// Assets (Cloudinary)
+// ─────────────────────────────────────────────────────────────
+
+enum AssetType {
+  IMAGE
+  VIDEO
+  PDF
+  OTHER
+}
+
+model Asset {
+  id       String    @id @default(cuid())
+  name     String
+  folder   String    @default("/")
+  type     AssetType
+  mimeType String
+  size     Int
+  url      String
+  publicId String @unique
+  width    Int?
+  height   Int?
+  format   String?
+
+  workspaceId  String
+  workspace    Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  campaignId   String?
+  campaign     Campaign? @relation(fields: [campaignId], references: [id], onDelete: SetNull)
+  uploadedById String?
+  uploadedBy   User?     @relation(fields: [uploadedById], references: [id], onDelete: SetNull)
+
+  visibility        VisibilityStatus @default(PUBLIC)
+  sharedWithUserIds String[]         @default([])
+
+  leadMagnets LeadMagnet[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([workspaceId, createdAt(sort: Desc)])
+  @@index([workspaceId, folder])
+  @@index([workspaceId, type])
+  @@index([campaignId])
+}
+
+// ─────────────────────────────────────────────────────────────
+// Landing Pages
+// ─────────────────────────────────────────────────────────────
+
+enum PageStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+model LandingPage {
+  id             String     @id @default(cuid())
+  title          String
+  slug           String     @unique
+  description    String?    @db.Text
+  status         PageStatus @default(DRAFT)
+  publishedAt    DateTime?
+  seoTitle       String?
+  seoDescription String?
+  views          Int        @default(0)
+
+  workspaceId String
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  campaignId  String?
+  campaign    Campaign? @relation(fields: [campaignId], references: [id], onDelete: SetNull)
+  createdById String?
+  createdBy   User?     @relation(fields: [createdById], references: [id], onDelete: SetNull)
+
+  visibility        VisibilityStatus @default(PUBLIC)
+  sharedWithUserIds String[]         @default([])
+
+  sections LandingPageSection[]
+  leads    Lead[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([workspaceId, createdAt(sort: Desc)])
+  @@index([workspaceId, status])
+  @@index([campaignId])
+}
+
+enum SectionType {
+  HERO
+  FEATURES
+  TESTIMONIALS
+  FAQ
+  CTA
+  PRICING
+  CONTACT
+}
+
+model LandingPageSection {
+  id      String      @id @default(cuid())
+  type    SectionType
+  order   Int
+  content Json
+
+  landingPageId String
+  landingPage   LandingPage @relation(fields: [landingPageId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([landingPageId, order])
+}
+
+// ─────────────────────────────────────────────────────────────
+// Lead Magnets & Leads
+// ─────────────────────────────────────────────────────────────
+
+enum LeadMagnetType {
+  CHECKLIST
+  STUDY_PLAN
+  PDF
+  QUIZ
+  GUIDE
+  RESOURCE
+}
+
+model LeadMagnet {
+  id          String         @id @default(cuid())
+  title       String
+  slug        String         @unique
+  description String?        @db.Text
+  type        LeadMagnetType
+  content     Json?
+  status      PageStatus     @default(DRAFT)
+  publishedAt DateTime?
+
+  workspaceId String
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  campaignId  String?
+  campaign    Campaign? @relation(fields: [campaignId], references: [id], onDelete: SetNull)
+  assetId     String?
+  asset       Asset?    @relation(fields: [assetId], references: [id], onDelete: SetNull)
+  createdById String?
+  createdBy   User?     @relation(fields: [createdById], references: [id], onDelete: SetNull)
+
+  visibility        VisibilityStatus @default(PUBLIC)
+  sharedWithUserIds String[]         @default([])
+
+  leads Lead[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([workspaceId, createdAt(sort: Desc)])
+  @@index([workspaceId, status])
+  @@index([campaignId])
+}
+
+model Lead {
+  id     String  @id @default(cuid())
+  email  String
+  name   String?
+  source String  @default("direct")
+  meta   Json?
+
+  workspaceId   String
+  workspace     Workspace    @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  leadMagnetId  String?
+  leadMagnet    LeadMagnet?  @relation(fields: [leadMagnetId], references: [id], onDelete: SetNull)
+  landingPageId String?
+  landingPage   LandingPage? @relation(fields: [landingPageId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([workspaceId, createdAt(sort: Desc)])
+  @@index([workspaceId, email])
+  @@index([leadMagnetId])
+  @@index([landingPageId])
+  @@unique([landingPageId, email])
+  @@unique([leadMagnetId, email])
+}
+
+// ─────────────────────────────────────────────────────────────
+// Activity & Settings
+// ─────────────────────────────────────────────────────────────
+
+enum ActivityAction {
+  CREATED
+  UPDATED
+  DELETED
+  PUBLISHED
+  UNPUBLISHED
+  GENERATED
+  UPLOADED
+  CAPTURED
+}
+
+enum EntityType {
+  WORKSPACE
+  CAMPAIGN
+  CONTENT
+  ASSET
+  LANDING_PAGE
+  LEAD_MAGNET
+  LEAD
+}
+
+model Activity {
+  id         String         @id @default(cuid())
+  action     ActivityAction
+  entityType EntityType
+  entityId   String?
+  title      String
+  metadata   Json?
+
+  workspaceId String
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  userId      String?
+  user        User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+
+  @@index([workspaceId, createdAt(sort: Desc)])
+  @@index([workspaceId, entityType])
+}
+
+model Settings {
+  id               String  @id @default(cuid())
+  brandName        String?
+  brandVoice       String? @db.Text
+  brandDescription String? @db.Text
+  website          String?
+  industry         String?
+  defaultTone      String  @default("professional")
+  aiModel          String  @default("deepseek-chat")
+
+  workspaceId String    @unique
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ─────────────────────────────────────────────────────────────
+// Agent Data (Imported from aiagent)
+// ─────────────────────────────────────────────────────────────
+
+model MarkdownFile {
+  id        String   @id @default(cuid())
+  filePath  String   @unique @map("file_path")
+  content   String   @db.Text
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@map("markdown_files")
+}

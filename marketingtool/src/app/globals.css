@@ -1,0 +1,377 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition — aligned with the AI Agent app.
+ * Emerald/lime brand green theme.
+ * Brand green #6FB941 = oklch(0.712 0.171 135.5), with #5da035 (darker) and
+ * #8ad15b (lighter) as companions. All colors use oklch.
+ */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.129 0.042 264.695);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.129 0.042 264.695);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.129 0.042 264.695);
+  --primary: oklch(0.638 0.156 135.9);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+  --secondary: oklch(0.968 0.007 247.896);
+  --secondary-foreground: oklch(0.208 0.042 265.755);
+  --muted: oklch(0.968 0.007 247.896);
+  --muted-foreground: oklch(0.554 0.046 257.417);
+  --accent: oklch(0.962 0.022 137.4);
+  --accent-foreground: oklch(0.35 0.09 135.9);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.929 0.013 255.508);
+  --input: oklch(0.929 0.013 255.508);
+  --ring: oklch(0.712 0.171 135.5);
+  --chart-1: oklch(0.712 0.171 135.5);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.984 0.003 247.858);
+  --sidebar-foreground: oklch(0.129 0.042 264.695);
+  --sidebar-primary: oklch(0.638 0.156 135.9);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.962 0.022 137.4);
+  --sidebar-accent-foreground: oklch(0.35 0.09 135.9);
+  --sidebar-border: oklch(0.929 0.013 255.508);
+  --sidebar-ring: oklch(0.712 0.171 135.5);
+}
+
+.dark {
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.208 0.042 265.755);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.712 0.171 135.5);
+  --primary-foreground: oklch(0.145 0.03 135.9);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.041 260.031);
+  --muted-foreground: oklch(0.704 0.04 256.788);
+  --accent: oklch(0.279 0.041 260.031);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.638 0.156 135.9);
+  --chart-1: oklch(0.788 0.168 134.6);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.208 0.042 265.755);
+  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-primary: oklch(0.712 0.171 135.5);
+  --sidebar-primary-foreground: oklch(0.145 0.03 135.9);
+  --sidebar-accent: oklch(0.279 0.041 260.031);
+  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.638 0.156 135.9);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+    text-size-adjust: 100%;
+  }
+  body {
+    @apply min-h-svh bg-background text-foreground;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+  button,
+  a,
+  [role="button"] {
+    touch-action: manipulation;
+  }
+  img,
+  video,
+  canvas,
+  iframe {
+    max-width: 100%;
+  }
+}
+
+/* Shared responsive safeguards for application primitives and rich content. */
+[data-slot="sidebar-inset"],
+[data-slot="card"],
+[data-slot="card-header"],
+[data-slot="card-content"],
+[data-slot="card-footer"],
+[data-slot="tabs"],
+[data-slot="tabs-content"],
+[data-slot="chart"] {
+  min-width: 0;
+  max-width: 100%;
+}
+
+[data-slot="table-container"],
+.markdown-content pre,
+.markdown-content table {
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.markdown-content {
+  overflow-wrap: anywhere;
+}
+
+.markdown-content pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.markdown-content img,
+.markdown-content video {
+  height: auto;
+}
+
+@media (max-width: 767px) {
+  [data-slot="dialog-content"],
+  [data-slot="alert-dialog-content"] {
+    max-height: calc(100svh - 1rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  [data-slot="sheet-content"] {
+    width: min(100%, 22rem);
+    max-width: calc(100vw - 0.75rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  [data-slot="popover-content"],
+  [data-slot="select-content"],
+  [data-slot="dropdown-menu-content"] {
+    max-width: calc(100vw - 1rem);
+  }
+
+  /*
+   * Dense result tabs become a horizontally scrollable, touch-friendly row
+   * instead of squeezing four long labels into narrow grid columns.
+   */
+  [data-slot="tabs-list"] {
+    display: flex !important;
+    width: 100%;
+    max-width: 100%;
+    height: auto !important;
+    min-height: 2.5rem;
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  [data-slot="tabs-list"]::-webkit-scrollbar {
+    display: none;
+  }
+
+  [data-slot="tabs-trigger"] {
+    flex: 0 0 auto;
+    min-height: 2.25rem;
+  }
+
+  [data-slot="card-header"] > .flex {
+    min-width: 0;
+    flex-wrap: wrap;
+  }
+
+  [data-slot="table-head"],
+  [data-slot="table-cell"] {
+    padding-inline: 0.75rem;
+  }
+}
+
+/* Markdown Content Typography, Indentation, and Spacing (chat) */
+.markdown-content {
+  line-height: 1.625;
+  font-size: 0.9375rem; /* 15px */
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+.markdown-content p {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+  font-weight: 600;
+  color: var(--color-foreground);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.markdown-content h1 {
+  font-size: 1.5rem;
+}
+.markdown-content h2 {
+  font-size: 1.35rem;
+}
+.markdown-content h3 {
+  font-size: 1.2rem;
+}
+.markdown-content h4 {
+  font-size: 1.05rem;
+}
+
+.markdown-content ul {
+  list-style-type: disc !important;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem !important;
+}
+
+.markdown-content ol {
+  list-style-type: decimal !important;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem !important;
+}
+
+.markdown-content li {
+  margin-top: 0.375rem;
+  margin-bottom: 0.375rem;
+  padding-left: 0.25rem;
+}
+
+.markdown-content ul ul,
+.markdown-content ol ul {
+  list-style-type: circle !important;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  padding-left: 1.5rem !important;
+}
+
+.markdown-content ul ol,
+.markdown-content ol ol {
+  list-style-type: lower-alpha !important;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  padding-left: 1.5rem !important;
+}
+
+.markdown-content h1 + *,
+.markdown-content h2 + *,
+.markdown-content h3 + *,
+.markdown-content h4 + * {
+  margin-top: 0.375rem;
+}
+
+.markdown-content strong {
+  font-weight: 600;
+  color: var(--color-foreground);
+}
+
+/* Custom scrollbar (Brand green) */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #6fb941 transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #6fb941;
+  border-radius: 10px;
+}
+
+/* Fix for streamdown code block buttons losing hit testing when content overflows */
+[data-streamdown="code-block"] {
+  content-visibility: visible !important;
+  contain-intrinsic-size: auto !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+[data-streamdown="code-block-body"] {
+  min-width: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  overflow-x: auto !important;
+}
+
+[data-streamdown="code-block-actions"] {
+  position: relative;
+  z-index: 50 !important;
+  pointer-events: auto !important;
+}
+
+[data-streamdown="code-block"] > .pointer-events-none.sticky {
+  z-index: 50 !important;
+}

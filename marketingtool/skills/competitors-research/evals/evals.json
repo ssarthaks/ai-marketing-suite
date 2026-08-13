@@ -1,0 +1,66 @@
+[
+  {
+    "id": "cr-001",
+    "name": "Auto-suggest target region competitors without URLs",
+    "prompt": "Do research for market competitors",
+    "expected_behavior": [
+      "Checks .agents/<productname>/product.md for product context",
+      "Recognizes product is our product target region",
+      "Auto-suggests local competitors: Free Online Study Notes, Kahoot, Competitor Notes Hub, YouTube channels, physical tuition centers",
+      "Asks for permission before researching",
+      "Requests depth level and focus areas"
+    ],
+    "tags": ["core", "auto-suggest", "target region"]
+  },
+  {
+    "id": "cr-002",
+    "name": "Deep competitor profile with URLs",
+    "prompt": "Deep competitor profile for merospark.com and studynotes.example.com",
+    "expected_behavior": [
+      "Creates structured profiles for both competitors",
+      "Includes positioning, pricing, features, content strategy, and weaknesses",
+      "Saves raw data and profiles in competitor-profiles/ directory",
+      "Creates cross-competitor summary with side-by-side comparison table",
+      "Identifies gaps EduPlatform can exploit"
+    ],
+    "tags": ["deep-profile", "multiple-competitors"]
+  },
+  {
+    "id": "cr-003",
+    "name": "Competitive comparison focused on pricing",
+    "prompt": "Compare our pricing vs Free Online Study Notes and YouTube channels for local exam preparation",
+    "expected_behavior": [
+      "Identifies EduPlatform's paid model vs free alternatives",
+      "Analyzes value proposition justifying EduPlatform's price premium",
+      "Highlights features free alternatives lack (testpapers, diagnostic reports, dialogic videos)",
+      "Suggests positioning strategies to compete against free",
+      "Follows chatty iterative approach"
+    ],
+    "tags": ["pricing", "competitive", "target region"]
+  },
+  {
+    "id": "cr-004",
+    "name": "Quick scan of a single competitor",
+    "prompt": "Quick scan of Kahoot",
+    "expected_behavior": [
+      "Performs a quick scan (not deep profile)",
+      "Covers positioning, features, and key signals",
+      "Avoids unverified claims",
+      "Completes in a single interaction with minimal follow-up"
+    ],
+    "tags": ["quick-scan", "single-competitor"]
+  },
+  {
+    "id": "cr-005",
+    "name": "Find market gaps in target region EdTech",
+    "prompt": "Find gaps in the target region EdTech market that we can exploit",
+    "expected_behavior": [
+      "Scans multiple competitors across the landscape",
+      "Identifies unserved or underserved segments",
+      "Highlights EduPlatform's unique capabilities vs market gaps",
+      "Provides actionable recommendations",
+      "References target region-specific factors (Curriculum Board syllabus, exam calendar, payment methods)"
+    ],
+    "tags": ["market-gaps", "strategic", "target region"]
+  }
+]

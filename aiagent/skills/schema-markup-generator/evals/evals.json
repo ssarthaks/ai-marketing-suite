@@ -1,0 +1,51 @@
+[
+  {
+    "id": "sm-001",
+    "name": "Generate schema for a page",
+    "prompt": "Add schema markup to our blog article.",
+    "expected_behavior": [
+      "Reads .agents/<productname>/product.md so Organization/brand fields are accurate",
+      "Fetches the live page to extract real author, dates, and content",
+      "Detects the correct type(s) and outputs valid JSON-LD in a script tag",
+      "Includes all required properties and a validation checklist",
+      "Never invents prices, ratings, or dates — flags missing values as needs-input"
+    ],
+    "tags": ["core", "json-ld", "schema"]
+  },
+  {
+    "id": "sm-002",
+    "name": "FAQ schema from on-page content",
+    "prompt": "Generate FAQ schema for this page.",
+    "expected_behavior": [
+      "Builds FAQPage Question/Answer pairs only from FAQs actually on the page",
+      "Outputs valid JSON-LD that would pass the Rich Results Test",
+      "Notes expected rich result and eligibility caveats",
+      "Warns against marking up content not visible on the page"
+    ],
+    "tags": ["faq", "rich-results"]
+  },
+  {
+    "id": "sm-003",
+    "name": "Multiple types with @graph",
+    "prompt": "Our page is an article with breadcrumbs and an embedded video — generate schema.",
+    "expected_behavior": [
+      "Combines Article, BreadcrumbList, and VideoObject in a single @graph block",
+      "Cross-references entities with stable @id values",
+      "Includes required fields per type",
+      "Reminds the user to validate before deploy"
+    ],
+    "tags": ["graph", "multi-type"]
+  },
+  {
+    "id": "sm-004",
+    "name": "Product schema with missing data",
+    "prompt": "Create Product schema for this item.",
+    "expected_behavior": [
+      "Includes Offer, price, currency, and availability when present",
+      "Omits AggregateRating/price if not on the page and lists them as needs-input",
+      "Does not hallucinate review counts or ratings",
+      "Explains which rich result this enables"
+    ],
+    "tags": ["product", "missing-data"]
+  }
+]

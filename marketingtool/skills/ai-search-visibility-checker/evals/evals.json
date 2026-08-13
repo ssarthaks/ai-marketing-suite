@@ -1,0 +1,27 @@
+[
+  {
+    "id": "asvc-001",
+    "name": "Audit AI search visibility",
+    "prompt": "Check our visibility in AI search for our main product category.",
+    "expected_behavior": [
+      "Reads .agents/<productname>/product.md for brand and product context",
+      "Evaluates brand mentions and sentiment in LLM-generated responses",
+      "Checks presence in AI search engines (like Perplexity or ChatGPT)",
+      "Provides a visibility score and highlights gaps",
+      "Suggests actionable steps to improve AI search visibility (AEO)"
+    ],
+    "tags": ["ai-search", "visibility", "aeo", "audit"]
+  },
+  {
+    "id": "asvc-002",
+    "name": "Check visibility against competitors",
+    "prompt": "How does our AI visibility compare to our top competitor?",
+    "expected_behavior": [
+      "Identifies the top competitor or asks for their name",
+      "Compares AI search mentions, sentiment, and accuracy for both brands",
+      "Highlights areas where the competitor dominates AI responses",
+      "Suggests strategies to displace the competitor in AI search results"
+    ],
+    "tags": ["competitor-analysis", "ai-search"]
+  }
+]

@@ -1,0 +1,64 @@
+[
+  {
+    "id": "vs-001",
+    "name": "Full TikTok storyboard",
+    "prompt": "Create a TikTok video storyboard to drive free signups for our product.",
+    "expected_behavior": [
+      "Reads .agents/<productname>/product.md for brand voice and audience",
+      "Researches top-performing formats and hooks for the platform/category first",
+      "Asks platform, length, goal, audience, and organic-vs-paid before writing",
+      "Delivers a scene-by-scene storyboard AND a clean script",
+      "Opens with a sub-3-second hook and a single clear CTA",
+      "References video-content-frameworks.md"
+    ],
+    "tags": ["core", "tiktok", "short-form"]
+  },
+  {
+    "id": "vs-002",
+    "name": "Platform-correct specs",
+    "prompt": "Make a YouTube explainer script about our product.",
+    "expected_behavior": [
+      "Uses 16:9, longer-form structure with a full intro hook",
+      "Places multiple retention beats and CTAs (30/60/90% + end screen)",
+      "Matches length and pacing to YouTube best practice",
+      "Provides shot-type direction per scene"
+    ],
+    "tags": ["youtube", "explainer", "specs"]
+  },
+  {
+    "id": "vs-003",
+    "name": "Hook variation testing",
+    "prompt": "Give me 3 hook options for a 15-second ad.",
+    "expected_behavior": [
+      "Generates 3 distinct hooks using different hook formulas",
+      "Each hook lands within the first 1-3 seconds",
+      "None open with a logo or brand name",
+      "Matches hook to the viewer's emotional state on the platform"
+    ],
+    "tags": ["hooks", "ads", "ab-test"]
+  },
+  {
+    "id": "vs-004",
+    "name": "Problem-before-product ordering",
+    "prompt": "Storyboard a 30-second product demo video.",
+    "expected_behavior": [
+      "Establishes the viewer's problem before showing the product",
+      "Shows the product/feature as the resolution, not the opener",
+      "Keeps to one goal and one CTA",
+      "Adds production and accessibility notes (captions, thumbnail)"
+    ],
+    "tags": ["demo", "structure"]
+  },
+  {
+    "id": "vs-005",
+    "name": "Paid vs organic adaptation",
+    "prompt": "Turn our organic Reel concept into a paid ad version.",
+    "expected_behavior": [
+      "Tightens the hook and moves the CTA earlier for paid",
+      "Designs for silent autoplay with burned-in captions",
+      "Adds UTM/tracking and a testable variation",
+      "Flags any factual claims for brand/legal approval"
+    ],
+    "tags": ["paid", "organic", "adaptation"]
+  }
+]

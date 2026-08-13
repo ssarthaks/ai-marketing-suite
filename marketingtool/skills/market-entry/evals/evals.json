@@ -1,0 +1,64 @@
+[
+  {
+    "id": "me-001",
+    "name": "Full market entry plan for a new country",
+    "prompt": "Build a market entry plan to launch our product in a new country.",
+    "expected_behavior": [
+      "Reads .agents/<productname>/product.md for product, existing markets, and model",
+      "Researches the target market live before answering (size, regulation, competitors, case studies)",
+      "Presents a brief findings summary, then asks 2-4 questions (target, entry mode, resources, existing relationships)",
+      "Recommends an entry mode justified with researched evidence",
+      "Produces the full plan with CAGE analysis, localization checklist, phased 6-month roadmap, and risk register",
+      "References market-entry-framework.md"
+    ],
+    "tags": ["core", "market-entry", "expansion"]
+  },
+  {
+    "id": "me-002",
+    "name": "Entry mode selection",
+    "prompt": "Should we enter this market organically or through a local school partnership?",
+    "expected_behavior": [
+      "Applies the entry-mode decision tree (buyer type, brand signal, speed, capital)",
+      "Compares modes on risk, speed, and control",
+      "Recommends one mode and explains why alternatives were rejected",
+      "Ties the recommendation to the product's B2C vs B2B2C nature"
+    ],
+    "tags": ["entry-mode", "decision"]
+  },
+  {
+    "id": "me-003",
+    "name": "CAGE distance and localization",
+    "prompt": "What do we need to localize to enter the Indonesian education market?",
+    "expected_behavior": [
+      "Runs CAGE distance analysis across cultural, administrative, geographic, economic",
+      "Produces a localization checklist (language, curriculum, pricing, payment, support, legal, brand)",
+      "Flags local payment methods and data/privacy requirements",
+      "Avoids applying home-market pricing without local willingness-to-pay adjustment"
+    ],
+    "tags": ["cage", "localization"]
+  },
+  {
+    "id": "me-004",
+    "name": "Phased go-to-market roadmap",
+    "prompt": "Give us a 6-month roadmap to get traction in the new market.",
+    "expected_behavior": [
+      "Structures Phase 1 Foundation, Phase 2 Traction, Phase 3 Scale",
+      "Makes Month 1-2 tasks specific and executable",
+      "Does not scale paid spend before a channel is proven in Phase 2",
+      "Attaches numeric, time-bound KPIs to each phase"
+    ],
+    "tags": ["roadmap", "gtm", "phased"]
+  },
+  {
+    "id": "me-005",
+    "name": "Entry risk assessment",
+    "prompt": "What are the biggest risks of entering this market and how do we mitigate them?",
+    "expected_behavior": [
+      "Builds an honest risk register with probability, impact, and mitigation",
+      "Covers regulatory, competitive response, localization, distribution, and unit-economics risks",
+      "Adds an early-warning signal for each major risk",
+      "Does not downplay risks to make the entry look attractive"
+    ],
+    "tags": ["risk", "mitigation"]
+  }
+]

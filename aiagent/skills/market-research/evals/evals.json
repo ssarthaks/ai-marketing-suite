@@ -1,0 +1,64 @@
+[
+  {
+    "id": "mr-001",
+    "name": "Full market sizing with TAM/SAM/SOM",
+    "prompt": "How big is the market for our product? Do a full market research.",
+    "expected_behavior": [
+      "Reads .agents/<productname>/product.md for product and geography context",
+      "Performs live web research before answering (industry reports, government data, search trends)",
+      "Presents a brief 2-3 paragraph briefing first, then asks 2-4 clarifying questions",
+      "Sizes the market with both top-down and bottom-up TAM/SAM/SOM and reconciles them",
+      "Cites a source or shows the derivation for every figure",
+      "References market-sizing-framework.md"
+    ],
+    "tags": ["core", "market-sizing", "tam-sam-som"]
+  },
+  {
+    "id": "mr-002",
+    "name": "Consumer behavior and JTBD analysis",
+    "prompt": "What jobs are students and parents trying to get done in the [Target Region] exam-prep market?",
+    "expected_behavior": [
+      "Uses Reddit/forum mining to capture unfiltered consumer sentiment",
+      "Frames demand as functional, emotional, and social Jobs-to-be-Done",
+      "Identifies underserved jobs current solutions fail to address",
+      "Backs each insight with researched evidence, not assumptions"
+    ],
+    "tags": ["jtbd", "consumer-behavior"]
+  },
+  {
+    "id": "mr-003",
+    "name": "PESTEL and structural market factors",
+    "prompt": "What macro and regulatory factors shape the EdTech market in [Target Region]?",
+    "expected_behavior": [
+      "Applies PESTEL across political, economic, social, technological, environmental, legal",
+      "Surfaces region-specific factors (device/data penetration, data-privacy law, exam policy)",
+      "Rates impact level and states the implication for the product",
+      "Avoids generic global data — keeps analysis local to the geography"
+    ],
+    "tags": ["pestel", "macro", "regulatory"]
+  },
+  {
+    "id": "mr-004",
+    "name": "Competitive intensity via Porter's Five Forces",
+    "prompt": "How competitive is the online learning market we are entering?",
+    "expected_behavior": [
+      "Assesses all five forces with evidence-backed drivers",
+      "Names actual competitors and the threat of free substitutes (YouTube, tuition centers)",
+      "Concludes with overall competitive intensity and what it means for entry",
+      "Recommends competitors-research for deeper individual profiling"
+    ],
+    "tags": ["porters-five-forces", "competitive"]
+  },
+  {
+    "id": "mr-005",
+    "name": "Market gaps and opportunity assessment",
+    "prompt": "Where are the white-space opportunities in the [Target Region] EdTech market?",
+    "expected_behavior": [
+      "Synthesizes sizing, segmentation, and competitive data into specific gaps",
+      "Rates each opportunity by effort to capture and revenue potential",
+      "Names concrete, executable next steps — not vague 'white space'",
+      "Hands off to market-entry or marketing-plan for execution"
+    ],
+    "tags": ["market-gaps", "opportunity", "strategic"]
+  }
+]

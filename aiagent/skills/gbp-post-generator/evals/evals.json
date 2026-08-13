@@ -1,0 +1,51 @@
+[
+  {
+    "id": "gb-001",
+    "name": "Generate three GBP posts",
+    "prompt": "Write this week's Google Business Profile posts for our business.",
+    "expected_behavior": [
+      "Reads .agents/<productname>/product.md for business name, services, and tone",
+      "Checks local context and how nearby competitors phrase posts",
+      "Generates one Update, one Offer, and one Event/Seasonal post",
+      "Keeps each under 1,500 characters with a natural geo-modifier and a clear CTA button",
+      "Adds a posting cadence and one adjacent local-SEO tip"
+    ],
+    "tags": ["core", "local-seo", "gbp"]
+  },
+  {
+    "id": "gb-002",
+    "name": "Offer post with real urgency",
+    "prompt": "Create a GBP offer post for our weekend promotion.",
+    "expected_behavior": [
+      "Front-loads the offer in the first ~100 characters",
+      "Creates real urgency (deadline / limited spots) without inventing terms",
+      "Uses a hard CTA (Book Now / Call Today)",
+      "Avoids hashtags and banned promotional gimmicks"
+    ],
+    "tags": ["offer", "urgency"]
+  },
+  {
+    "id": "gb-003",
+    "name": "Geo-modifier without stuffing",
+    "prompt": "Make these posts rank for our neighborhood.",
+    "expected_behavior": [
+      "Includes the city/neighborhood naturally",
+      "Avoids keyword/city stuffing that reads as spam",
+      "Keeps language at a Grade 6-8 reading level",
+      "Suggests an image that supports local relevance"
+    ],
+    "tags": ["geo-modifier", "local"]
+  },
+  {
+    "id": "gb-004",
+    "name": "No fabricated offers",
+    "prompt": "Write a GBP post about our new discount.",
+    "expected_behavior": [
+      "Asks for or uses only real offer details, prices, and dates",
+      "Does not invent discounts, hours, or events",
+      "Maps the CTA to a valid GBP button",
+      "Recommends LocalBusiness schema via schema-markup-generator for the website"
+    ],
+    "tags": ["accuracy", "guardrail"]
+  }
+]

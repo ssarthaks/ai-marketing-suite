@@ -1,0 +1,51 @@
+[
+  {
+    "id": "il-001",
+    "name": "Build a hub-and-spoke linking strategy",
+    "prompt": "Design an internal linking strategy for our blog.",
+    "expected_behavior": [
+      "Reads .agents/<productname>/product.md for topics and conversion targets",
+      "Fetches the sitemap/key sections if only a domain is given",
+      "Identifies pillar hubs and groups cluster spokes by topic",
+      "Returns a cluster map plus specific source->target links with anchor text and link type",
+      "Ends with the top 5 priority links and their rationale"
+    ],
+    "tags": ["core", "internal-linking", "topical-authority"]
+  },
+  {
+    "id": "il-002",
+    "name": "Orphan page rescue",
+    "prompt": "Find pages with no internal links pointing to them and fix it.",
+    "expected_behavior": [
+      "Flags orphan pages from the supplied/crawled inventory",
+      "Assigns each orphan to the right cluster",
+      "Recommends specific links to rescue them",
+      "Only links pages that actually exist in the inventory"
+    ],
+    "tags": ["orphan", "crawl-depth"]
+  },
+  {
+    "id": "il-003",
+    "name": "Anchor text strategy",
+    "prompt": "What anchor text should we use for these internal links?",
+    "expected_behavior": [
+      "Recommends descriptive, varied anchors (no exact-match repetition)",
+      "Mixes branded, keyword-rich, and natural-phrase anchors",
+      "Explains the relevance rationale for each link",
+      "Avoids over-optimization that reads as manipulative"
+    ],
+    "tags": ["anchor-text", "optimization"]
+  },
+  {
+    "id": "il-004",
+    "name": "Boost money pages",
+    "prompt": "Make sure our conversion pages get enough internal links.",
+    "expected_behavior": [
+      "Flags priority/conversion pages that are under-linked relative to value",
+      "Recommends links from relevant high-authority pages",
+      "Limits cross-cluster links to avoid diluting focus",
+      "Links for the reader's journey first, SEO benefit second"
+    ],
+    "tags": ["money-pages", "link-equity"]
+  }
+]

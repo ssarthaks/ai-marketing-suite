@@ -1,0 +1,68 @@
+[
+  {
+    "id": "pm-001",
+    "name": "Auto-draft product marketing context from codebase",
+    "prompt": "Set up product marketing context for our product",
+    "expected_behavior": [
+      "Checks for existing .agents/<productname>/product.md",
+      "If exists, summarizes what's captured and asks what to update",
+      "If not, offers auto-draft from codebase or start from scratch",
+      "Walks through sections conversationally, one at a time",
+      "Pushes for verbatim customer language",
+      "Saves to .agents/<productname>/product.md"
+    ],
+    "tags": ["core", "auto-draft"]
+  },
+  {
+    "id": "pm-002",
+    "name": "Update existing context with new competitor",
+    "prompt": "Update our product product marketing context — we have a new competitor called Kahoot",
+    "expected_behavior": [
+      "Reads existing .agents/<productname>/product.md",
+      "Navigates to the Competitive Landscape section",
+      "Researches Kahoot",
+      "Adds it as a direct competitor with positioning analysis",
+      "Asks for confirmation before saving"
+    ],
+    "tags": ["update", "competitive"]
+  },
+  {
+    "id": "pm-003",
+    "name": "Create personas for our product",
+    "prompt": "Create buyer personas for our product target region",
+    "expected_behavior": [
+      "Identifies multi-sided market: Students, Parents, Teachers, School Leaders",
+      "Creates persona profiles with JTBD, pain points, and decision triggers",
+      "Uses target region-specific context (Curriculum Board syllabus, [Local Payment Gateway]/[Local Payment Gateway], exam seasons)",
+      "Distinguishes between users (students) and buyers (parents/school leaders)",
+      "References buyer-personas-framework.md reference file"
+    ],
+    "tags": ["personas", "target region"]
+  },
+  {
+    "id": "pm-004",
+    "name": "Positioning statement for our product",
+    "prompt": "Write a positioning statement for our product target region",
+    "expected_behavior": [
+      "Reads .agents/<productname>/product.md for context",
+      "Creates positioning statement targeting primary segment",
+      "Differentiates from free alternatives (YouTube, Free Online Study Notes)",
+      "Highlights dialogic pedagogy and Curriculum Board syllabus alignment",
+      "Follows chatty iterative approach"
+    ],
+    "tags": ["positioning", "target region"]
+  },
+  {
+    "id": "pm-005",
+    "name": "Check legacy file locations",
+    "prompt": "I think I have a product marketing file somewhere",
+    "expected_behavior": [
+      "Checks .agents/<productname>/product.md (canonical location)",
+      "Also checks .claude/product-marketing.md (legacy)",
+      "Also checks product-marketing-context.md (legacy filename)",
+      "If found in non-canonical location, offers to move it",
+      "Does not create duplicate files"
+    ],
+    "tags": ["legacy", "file-check"]
+  }
+]

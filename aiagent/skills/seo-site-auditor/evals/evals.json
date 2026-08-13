@@ -1,0 +1,52 @@
+[
+  {
+    "id": "sa-001",
+    "name": "Full SEO audit of a URL",
+    "prompt": "Run an SEO audit on our pricing page.",
+    "expected_behavior": [
+      "Reads .agents/<productname>/product.md for product and region context",
+      "Fetches the live page HTML rather than auditing from memory",
+      "Benchmarks against a top-ranking competitor for the primary keyword",
+      "Presents the biggest issues, then asks about primary keyword, region, and GSC access",
+      "Returns a prioritized table (CRITICAL/WARNING/OPTIMIZATION) with evidence, impact, and fix",
+      "Ends with Quick Wins, Competitive Gap, and a 30-day roadmap"
+    ],
+    "tags": ["core", "technical-seo", "audit"]
+  },
+  {
+    "id": "sa-002",
+    "name": "Diagnose a non-ranking page",
+    "prompt": "Why isn't this blog post ranking?",
+    "expected_behavior": [
+      "Checks indexability signals (canonical, robots, status codes)",
+      "Compares content depth and entities against the ranking set",
+      "Flags intent mismatch if the page targets the wrong intent",
+      "Gives a ranked set of fixes tied to the ranking gap"
+    ],
+    "tags": ["diagnosis", "ranking"]
+  },
+  {
+    "id": "sa-003",
+    "name": "Core Web Vitals and performance",
+    "prompt": "Check the technical performance of our homepage.",
+    "expected_behavior": [
+      "Inspects render-blocking resources, image optimization, and layout-shift risks",
+      "Reports only observed/fetched signals and flags what it could not measure",
+      "Prioritizes fixes by LCP/CLS impact",
+      "Does not fabricate Lighthouse/CWV scores"
+    ],
+    "tags": ["core-web-vitals", "performance"]
+  },
+  {
+    "id": "sa-004",
+    "name": "AI-search readiness within the audit",
+    "prompt": "Is this page ready for Google AI Overviews?",
+    "expected_behavior": [
+      "Checks for a direct-answer block in the first 100 words",
+      "Checks structured data and entity clarity",
+      "Recommends aeo-content-optimizer / schema-markup-generator for deeper work",
+      "Keeps recommendations specific and shippable"
+    ],
+    "tags": ["aeo", "ai-search"]
+  }
+]

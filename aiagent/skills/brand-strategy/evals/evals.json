@@ -1,0 +1,65 @@
+[
+  {
+    "id": "bs-001",
+    "name": "Brand strategy creation",
+    "prompt": "Define our brand strategy and archetype.",
+    "expected_behavior": [
+      "Checks for .agents/<productname>/product.md context",
+      "Performs deep web research on competitors and positioning trends",
+      "Presents summary and asks 2-4 validation questions",
+      "Outputs Brand Strategy document",
+      "Uses Kapferer's Brand Identity Prism",
+      "Identifies Jungian Archetype",
+      "References brand-strategy-framework.md"
+    ],
+    "tags": ["core", "strategy", "archetype"]
+  },
+  {
+    "id": "bs-002",
+    "name": "Brand voice and tone definition",
+    "prompt": "What should our brand voice and tone of voice be?",
+    "expected_behavior": [
+      "Derives voice from the chosen archetype and brand DNA",
+      "Gives 3-5 voice adjectives plus do/don't examples",
+      "Makes the voice usable by a copywriter without follow-up",
+      "Differentiates the voice from direct competitors"
+    ],
+    "tags": ["voice", "tone"]
+  },
+  {
+    "id": "bs-003",
+    "name": "Golden Circle / brand purpose",
+    "prompt": "Help us articulate our Why, How, and What.",
+    "expected_behavior": [
+      "Applies Sinek's Golden Circle (Why/How/What)",
+      "Connects the Why directly through to the What",
+      "Grounds the purpose in the real product and audience, not platitudes",
+      "Avoids generic mission-statement filler"
+    ],
+    "tags": ["golden-circle", "purpose"]
+  },
+  {
+    "id": "bs-004",
+    "name": "Messaging pillars",
+    "prompt": "Give us our core messaging pillars.",
+    "expected_behavior": [
+      "Defines 3 messaging pillars tied to the brand strategy",
+      "Provides a rationale and proof direction for each pillar",
+      "Ensures pillars are distinct and non-overlapping",
+      "Hands off to creative-copylines for execution"
+    ],
+    "tags": ["messaging", "pillars"]
+  },
+  {
+    "id": "bs-005",
+    "name": "Archetype distinctiveness check",
+    "prompt": "Is our brand archetype different enough from our competitors?",
+    "expected_behavior": [
+      "Researches competitors' apparent archetypes",
+      "Assesses whether the chosen archetype is distinguishable",
+      "Recommends a sharper or secondary archetype if too crowded",
+      "Commits to ONE primary archetype rather than hedging"
+    ],
+    "tags": ["archetype", "differentiation"]
+  }
+]

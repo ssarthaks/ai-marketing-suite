@@ -1,0 +1,51 @@
+[
+  {
+    "id": "ao-001",
+    "name": "Optimize a page for AI answers",
+    "prompt": "Optimize this article so ChatGPT and Perplexity cite it.",
+    "expected_behavior": [
+      "Reads .agents/<productname>/product.md so the rewrite stays on-brand and accurate",
+      "Observes how answer engines currently answer the target query before rewriting",
+      "Writes a 40-60 word direct-answer paragraph to sit after the H1",
+      "Restructures prose into extractable formats where it aids comprehension",
+      "Returns before/after, an AEO scorecard, and engine-specific notes",
+      "Does not fabricate stats or sources"
+    ],
+    "tags": ["core", "aeo", "ai-search"]
+  },
+  {
+    "id": "ao-002",
+    "name": "Answer density fix",
+    "prompt": "The answer to this query is buried — fix it.",
+    "expected_behavior": [
+      "Identifies the core question and moves the answer into the first 60 words",
+      "Adds a TL;DR/summary block near the top",
+      "Keeps the human reader's experience intact, not just machine extraction"
+    ],
+    "tags": ["answer-density", "structure"]
+  },
+  {
+    "id": "ao-003",
+    "name": "Entity and citation readiness",
+    "prompt": "Make this content more citation-worthy for AI.",
+    "expected_behavior": [
+      "Defines key entities on first mention and makes relationships explicit",
+      "Adds specific numbers, dates, and named, attributable sources",
+      "Surfaces author expertise and last-updated signals",
+      "Flags any missing data as a placeholder rather than inventing it"
+    ],
+    "tags": ["entities", "citation"]
+  },
+  {
+    "id": "ao-004",
+    "name": "Engine-specific optimization",
+    "prompt": "We care most about Google AI Overviews — optimize for that.",
+    "expected_behavior": [
+      "Tailors structure and schema/E-E-A-T emphasis to the priority engine",
+      "Notes how the changes help the chosen engine specifically",
+      "Still generalizes well to other answer engines",
+      "Recommends ai-search-visibility-checker to score before/after"
+    ],
+    "tags": ["engine-specific", "ai-overviews"]
+  }
+]

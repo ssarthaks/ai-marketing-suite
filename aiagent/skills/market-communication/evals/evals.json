@@ -1,0 +1,64 @@
+[
+  {
+    "id": "mc-001",
+    "name": "Full communication strategy",
+    "prompt": "Build a market communication strategy for our product.",
+    "expected_behavior": [
+      "Reads .agents/<productname>/product.md for brand, audience, and positioning",
+      "Researches competitor communications and real audience language first",
+      "Presents a brief and asks which stakeholders matter and what's driving the request",
+      "Produces a single core message with 2-3 pillars and proof points",
+      "Builds StoryBrand SB7 with the customer as hero and brand as guide",
+      "References communication-frameworks.md"
+    ],
+    "tags": ["core", "communication", "messaging"]
+  },
+  {
+    "id": "mc-002",
+    "name": "Message map with single core message",
+    "prompt": "Give us our core message and supporting pillars.",
+    "expected_behavior": [
+      "Defines exactly ONE core message, not several competing taglines",
+      "Creates 2-3 pillars each with at least two proof points",
+      "Ensures every planned asset traces back to a pillar",
+      "Uses audience-verbatim language where possible"
+    ],
+    "tags": ["message-map", "pillars"]
+  },
+  {
+    "id": "mc-003",
+    "name": "Stakeholder message sheets",
+    "prompt": "How should we talk to parents vs schools vs students?",
+    "expected_behavior": [
+      "Builds a distinct message sheet per stakeholder",
+      "Specifies concern, message, tone, proof point, CTA, and what NOT to say",
+      "Keeps the customer as the hero, brand as guide",
+      "Selects the right channel for each stakeholder"
+    ],
+    "tags": ["stakeholders", "message-sheets"]
+  },
+  {
+    "id": "mc-004",
+    "name": "PESO channel plan",
+    "prompt": "Plan our communication channels across paid, earned, shared, and owned.",
+    "expected_behavior": [
+      "Covers all four PESO types with a clear role for each",
+      "Assigns frequency, format, audience, and KPI per channel",
+      "Avoids over-reliance on paid alone",
+      "Maps channels back to the message pillars"
+    ],
+    "tags": ["peso", "channels"]
+  },
+  {
+    "id": "mc-005",
+    "name": "Crisis communication protocol",
+    "prompt": "We're getting negative press — what's our communication response?",
+    "expected_behavior": [
+      "Applies the DEARE protocol (Detect, Evaluate, Acknowledge, Respond, Evolve)",
+      "Classifies the issue into a severity tier with a time-bound response window",
+      "Provides a holding-statement template for the first 1-2 hours",
+      "Recommends a post-crisis review and protocol update"
+    ],
+    "tags": ["crisis", "pr"]
+  }
+]

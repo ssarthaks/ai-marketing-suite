@@ -1,0 +1,64 @@
+# -----------------------------------------------------------------------------
+# AI Marketing Suite — Git Ignore Policy
+# -----------------------------------------------------------------------------
+
+# Dependencies
+node_modules/
+**/node_modules/
+.pnp
+.pnp.*
+
+# Build Outputs & Next.js Caches
+.next/
+**/ .next/
+out/
+**/out/
+build/
+**/build/
+dist/
+**/dist/
+.output/
+.vinxi/
+*.tsbuildinfo
+
+# Environment & Secrets (Never commit credentials)
+.env
+.env*.local
+.env.production
+.env.staging
+!.env.example
+**/.env
+**/.env*.local
+!**/.env.example
+
+# Logs & Debug
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE & Tooling Caches
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.claude/
+.gemini/
+*.swp
+*.swo
+
+# Diagnostic & Scratch Files
+/scratch/
+web-search-flowchart-images/
+*.sql
+*.tmp
