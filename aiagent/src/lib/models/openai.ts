@@ -1,23 +1,15 @@
 "use server";
 
 import { z } from "zod";
-import {
-  extractTool,
-  readerTool,
-  redditSearchTool,
-  searchTool,
-  siteCrawlTool,
-  toToolFailure,
-  youtubeTranscriptTool,
-} from "../tools";
+import { searchTool, readerTool } from "../tools";
 import { getMarketingSystemPrompt } from "../prompt-generation";
 import { formatToolResult, sanitizeModelResponse } from "../utils";
 
+import { query } from "@/lib/db";
 import { MODEL_PRICING } from "@/lib/pricing";
 import {
   aiRequestSchema,
   authorizeAiRequest,
-  readProviderJson,
 } from "@/lib/ai-security";
 
 export async function openaiChat({ data }: { data: unknown }) {
@@ -97,7 +89,7 @@ export async function openaiChat({ data }: { data: unknown }) {
     });
 
     if (!response.ok) {
-      throw new Error(`OpenAI request failed with status ${response.status}`);
+      throw new Error(`OpenAI API request failed with status ${response.status}`);
     }
 
     const payload = await response.json();
@@ -107,7 +99,7 @@ export async function openaiChat({ data }: { data: unknown }) {
     }
 
     const msg = payload.choices?.[0]?.message;
-    if (!msg) throw new Error("OpenAI returned an empty response.");
+    if (!msg) throw new Error("OpenAI API returned an empty response.");
 
     apiMessages.push(msg);
 
@@ -133,17 +125,27 @@ export async function openaiChat({ data }: { data: unknown }) {
     }
   }
 
-  const pricing = MODEL_PRICING[model] || { input: 0.15, output: 0.60 };
-  const cost = (totalPromptTokens / 1_000_000) * pricing.input + (totalCompletionTokens / 1_000_000) * pricing.output;
+  try {
+    const pricing = MODEL_PRICING[model] || { input: 0.15, output: 0.60 };
+    const inputCost = (totalPromptTokens / 1_000_000) * pricing.input;
+    const outputCost = (totalCompletionTokens / 1_000_000) * pricing.output;
+    const totalCost = inputCost + outputCost;
+
+    if (totalPromptTokens > 0 || totalCompletionTokens > 0) {
+      await query(
+        "UPDATE users SET total_input_tokens = COALESCE(total_input_tokens, 0) + $1, total_output_tokens = COALESCE(total_output_tokens, 0) + $2, total_cost = COALESCE(total_cost, 0) + $3 WHERE id = $4",
+        [totalPromptTokens, totalCompletionTokens, totalCost, access.user.id],
+      );
+    }
+  } catch {
+    console.error("Failed to record usage for OpenAI");
+  }
 
   return {
-    model,
     content: sanitizeModelResponse(finalContent),
-    tokens: {
-      prompt: totalPromptTokens,
-      completion: totalCompletionTokens,
-      total: totalPromptTokens + totalCompletionTokens,
+    usage: {
+      promptTokens: totalPromptTokens,
+      completionTokens: totalCompletionTokens,
     },
-    costUsd: cost,
   };
 }

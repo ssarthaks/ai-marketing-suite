@@ -5,6 +5,7 @@ import { searchTool, readerTool } from "../tools";
 import { getMarketingSystemPrompt } from "../prompt-generation";
 import { formatToolResult, sanitizeModelResponse } from "../utils";
 
+import { query } from "@/lib/db";
 import { MODEL_PRICING } from "@/lib/pricing";
 import { aiRequestSchema, authorizeAiRequest } from "@/lib/ai-security";
 
@@ -63,17 +64,27 @@ export async function geminiChat({ data }: { data: unknown }) {
   const promptTokens = usage.promptTokenCount || 0;
   const completionTokens = usage.candidatesTokenCount || 0;
 
-  const pricing = MODEL_PRICING[model] || { input: 0.15, output: 0.60 };
-  const cost = (promptTokens / 1_000_000) * pricing.input + (completionTokens / 1_000_000) * pricing.output;
+  try {
+    const pricing = MODEL_PRICING[model] || { input: 0.15, output: 0.60 };
+    const inputCost = (promptTokens / 1_000_000) * pricing.input;
+    const outputCost = (completionTokens / 1_000_000) * pricing.output;
+    const totalCost = inputCost + outputCost;
+
+    if (promptTokens > 0 || completionTokens > 0) {
+      await query(
+        "UPDATE users SET total_input_tokens = COALESCE(total_input_tokens, 0) + $1, total_output_tokens = COALESCE(total_output_tokens, 0) + $2, total_cost = COALESCE(total_cost, 0) + $3 WHERE id = $4",
+        [promptTokens, completionTokens, totalCost, access.user.id],
+      );
+    }
+  } catch {
+    console.error("Failed to record usage for Gemini");
+  }
 
   return {
-    model,
     content: sanitizeModelResponse(text),
-    tokens: {
-      prompt: promptTokens,
-      completion: completionTokens,
-      total: promptTokens + completionTokens,
+    usage: {
+      promptTokens: promptTokens,
+      completionTokens: completionTokens,
     },
-    costUsd: cost,
   };
 }

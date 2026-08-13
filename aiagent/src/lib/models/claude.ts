@@ -5,6 +5,7 @@ import { searchTool, readerTool } from "../tools";
 import { getMarketingSystemPrompt } from "../prompt-generation";
 import { formatToolResult, sanitizeModelResponse } from "../utils";
 
+import { query } from "@/lib/db";
 import { MODEL_PRICING } from "@/lib/pricing";
 import { aiRequestSchema, authorizeAiRequest } from "@/lib/ai-security";
 
@@ -118,17 +119,27 @@ export async function claudeChat({ data }: { data: unknown }) {
     }
   }
 
-  const pricing = MODEL_PRICING[model] || { input: 3.0, output: 15.0 };
-  const cost = (totalPromptTokens / 1_000_000) * pricing.input + (totalCompletionTokens / 1_000_000) * pricing.output;
+  try {
+    const pricing = MODEL_PRICING[model] || { input: 3.0, output: 15.0 };
+    const inputCost = (totalPromptTokens / 1_000_000) * pricing.input;
+    const outputCost = (totalCompletionTokens / 1_000_000) * pricing.output;
+    const totalCost = inputCost + outputCost;
+
+    if (totalPromptTokens > 0 || totalCompletionTokens > 0) {
+      await query(
+        "UPDATE users SET total_input_tokens = COALESCE(total_input_tokens, 0) + $1, total_output_tokens = COALESCE(total_output_tokens, 0) + $2, total_cost = COALESCE(total_cost, 0) + $3 WHERE id = $4",
+        [totalPromptTokens, totalCompletionTokens, totalCost, access.user.id],
+      );
+    }
+  } catch {
+    console.error("Failed to record usage for Claude");
+  }
 
   return {
-    model,
     content: sanitizeModelResponse(finalContent),
-    tokens: {
-      prompt: totalPromptTokens,
-      completion: totalCompletionTokens,
-      total: totalPromptTokens + totalCompletionTokens,
+    usage: {
+      promptTokens: totalPromptTokens,
+      completionTokens: totalCompletionTokens,
     },
-    costUsd: cost,
   };
 }
