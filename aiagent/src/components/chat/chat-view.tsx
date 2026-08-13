@@ -22,7 +22,7 @@ import {
   useThreads,
   type ChatMessage,
 } from "@/lib/threads";
-import { deepseekChat } from "@/lib/models/deepseek";
+import { aiAgentChatRouter } from "@/lib/models";
 import { useRouter } from "next/navigation";
 import {
   AlertDialog,
@@ -39,7 +39,14 @@ import { checkProAccess, requestProModelAccess } from "@/app/actions/user";
 import { toast } from "sonner";
 import { getErrorMessage } from "@/lib/utils";
 
-type ChatModelId = "deepseek-v4-flash" | "deepseek-v4-pro";
+type ChatModelId =
+  | "deepseek-v4-flash"
+  | "deepseek-v4-pro"
+  | "gpt-4o"
+  | "gpt-4o-mini"
+  | "claude-3-5-sonnet"
+  | "claude-3-5-haiku"
+  | "gemini-2.5-flash";
 
 const MODEL_OPTIONS: Array<{
   id: ChatModelId;
@@ -47,11 +54,31 @@ const MODEL_OPTIONS: Array<{
 }> = [
   {
     id: "deepseek-v4-flash",
-    label: "DeepSeek Flash (Marketing Agent)",
+    label: "DeepSeek V4 Flash",
   },
   {
     id: "deepseek-v4-pro",
-    label: "DeepSeek Pro (Marketing Agent)",
+    label: "DeepSeek V4 Pro",
+  },
+  {
+    id: "gpt-4o",
+    label: "OpenAI GPT-4o",
+  },
+  {
+    id: "gpt-4o-mini",
+    label: "OpenAI GPT-4o Mini",
+  },
+  {
+    id: "claude-3-5-sonnet",
+    label: "Anthropic Claude 3.5 Sonnet",
+  },
+  {
+    id: "claude-3-5-haiku",
+    label: "Anthropic Claude 3.5 Haiku",
+  },
+  {
+    id: "gemini-2.5-flash",
+    label: "Google Gemini 2.5 Flash",
   },
 ];
 
@@ -216,8 +243,7 @@ export function ChatView({ threadId }: Props) {
       const activeModel =
         MODEL_OPTIONS.find((option) => option.id === modelId) ??
         MODEL_OPTIONS[0];
-      const handler =
-        modelId === "deepseek-v4-flash" ? deepseekChat : deepseekChat;
+      const handler = aiAgentChatRouter;
 
       const toModelContent = (message: ChatMessage) => {
         if (!message.attachments || message.attachments.length === 0) {

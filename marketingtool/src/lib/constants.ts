@@ -64,3 +64,12 @@ export const DEMO_PROJECTS = [
 
 export const EDTECH_PROJECTS = DEMO_PROJECTS;
 
+export const AI_MODELS = [
+  { id: "deepseek-chat", name: "DeepSeek V4 Flash", provider: "DeepSeek" },
+  { id: "gpt-4o", name: "OpenAI GPT-4o", provider: "OpenAI" },
+  { id: "gpt-4o-mini", name: "OpenAI GPT-4o Mini", provider: "OpenAI" },
+  { id: "claude-3-5-sonnet-20241022", name: "Anthropic Claude 3.5 Sonnet", provider: "Anthropic" },
+  { id: "claude-3-5-haiku-20241022", name: "Anthropic Claude 3.5 Haiku", provider: "Anthropic" },
+  { id: "gemini-2.5-flash", name: "Google Gemini 2.5 Flash", provider: "Google" },
+] as const;
+
