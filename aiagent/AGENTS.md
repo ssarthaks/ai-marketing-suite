@@ -102,7 +102,6 @@ aiagent/
 │   │   └── SKILL.md
 │   ├── seo-content-brief-writer/
 │   │   └── SKILL.md
-│   └── ai-search-visibility-checker/
 │   ├── ai-search-visibility-checker/
 │   │   └── SKILL.md
 │   ├── market-research/

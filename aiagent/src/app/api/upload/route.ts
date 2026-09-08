@@ -212,7 +212,6 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    const folder = `lumen/${user.id}`;
     const folder = `aiagent/${user.id}`;
     const results = [];
     const uploadedResources: Array<{

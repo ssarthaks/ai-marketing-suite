@@ -92,7 +92,6 @@ async function createAndSendPasswordReset(
     });
 
     await transporter.sendMail({
-      from: process.env.SMTP_FROM || "Lumen App <noreply@lumen.com>",
       from: process.env.SMTP_FROM || "AiAgent App <noreply@example.com>",
       to: email,
       subject: "Reset your password",

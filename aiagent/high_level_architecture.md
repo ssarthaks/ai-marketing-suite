@@ -1,7 +1,5 @@
-# Lumen AI Agent: System Architecture & Workflow
 # AiAgent: System Architecture & Workflow
 
-This document explains the complete architecture and workflow of the Lumen AI Marketing Agent application. It is designed to be easily explained to developers, stakeholders, and product managers.
 This document explains the complete architecture and workflow of the AiAgent Marketing Agent application. It is designed to be easily explained to developers, stakeholders, and product managers.
 
 ## 🏗 High-Level Architecture
@@ -93,7 +91,6 @@ This transforms the AI from a simple "chatbot" into an interactive software appl
 
 ## 🎯 Summary for Stakeholders
 
-> **"Lumen is not just a chatbot; it is a modular, context-aware Marketing Engine."**
 > **"AiAgent is not just a chatbot; it is a modular, context-aware Marketing Engine."**
 
 It behaves like a real employee:

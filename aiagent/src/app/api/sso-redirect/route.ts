@@ -5,7 +5,6 @@ import { requireActiveUser } from "@/lib/authz";
 import { rateLimit } from "@/lib/rate-limit";
 import { getApplicationOrigin } from "@/lib/server-security";
 
-const SSO_ISSUER = "lumen-aiagent";
 const SSO_ISSUER = "aiagent";
 const SSO_AUDIENCE = "marketingtool";
 const SSO_TOKEN_TTL_SECONDS = 60;

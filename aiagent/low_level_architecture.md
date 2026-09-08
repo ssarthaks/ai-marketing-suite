@@ -1,7 +1,5 @@
-# Lumen AI Agent: Low-Level Architecture & Function Interactions
 # AiAgent: Low-Level Architecture & Function Interactions
 
-This document dives deep into the specific files, hooks, and function pipelines that power the Lumen AI Agent. It bridges the high-level concepts with actual codebase implementation details.
 This document dives deep into the specific files, hooks, and function pipelines that power the AiAgent Marketing Assistant. It bridges the high-level concepts with actual codebase implementation details.
 
 ---
@@ -12,6 +10,7 @@ The application is completely serverless from a database perspective. State is h
 The application maintains chat threads, sessions, and marketing skills. State is synchronized across views and workflows.
 
 ### `src/lib/threads.ts`
+
 - **Storage Pipeline:** Chat messages and threads are stored in the relational database with local caching for instant UI responsiveness.
 - **Cross-Tab Sync:** Whenever state is updated, custom events notify React hooks, immediately updating the UI across all open browser tabs without polling.
 
@@ -21,7 +20,6 @@ This is the core state manager for the chat application.
 - **Hooks:**
   - `useThreads()`: Retrieves all chat sessions.
   - `useThreadMessages(threadId)`: Retrieves the message array for a specific thread.
-- **Cross-Tab Sync:** Whenever a message is written to `localStorage`, `writeMessages` dispatches a `new CustomEvent("lumen:messages-changed")`. The React hooks listen for this event, immediately updating the UI across all open browser tabs without polling.
 - **Cross-Tab Sync:** Whenever a message is written to `localStorage`, `writeMessages` dispatches a `new CustomEvent("aiagent:messages-changed")`. The React hooks listen for this event, immediately updating the UI across all open browser tabs without polling.
 
 ---

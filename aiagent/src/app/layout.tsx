@@ -7,15 +7,11 @@ import { Metadata } from "next";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Lumen — AI Marketing Assistant",
   title: "AiAgent — AI Marketing Assistant",
   description:
-    "A premium, minimal AI chat workspace for drafting, brainstorming and coding.",
-  authors: [{ name: "Lumen" }],
     "A premium, minimal AI chat workspace for drafting, brainstorming and marketing strategy.",
   authors: [{ name: "AiAgent" }],
   openGraph: {
-    title: "Lumen — AI Marketing Assistant",
     title: "AiAgent — AI Marketing Assistant",
     description: "Premium, minimal AI chat workspace.",
     type: "website",

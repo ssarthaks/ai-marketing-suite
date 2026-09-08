@@ -39,7 +39,6 @@ export default function ForgotPasswordPage() {
           <div className="flex h-16 w-16 items-center justify-center mb-2 overflow-hidden">
             <Image
               src={logo}
-              alt="Lumen Logo"
               alt="AiAgent Logo"
               width={64}
               height={64}
@@ -69,7 +68,6 @@ export default function ForgotPasswordPage() {
         <div className="flex h-16 w-16 items-center justify-center mb-2 overflow-hidden">
           <Image
             src={logo}
-            alt="Lumen Logo"
             alt="AiAgent Logo"
             width={64}
             height={64}

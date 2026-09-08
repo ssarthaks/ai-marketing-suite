@@ -319,7 +319,6 @@ Search, choose the canonical pricing URL, then call Extract—not Reader.
 ```dotenv
 SEARXNG_INSTANCES=https://your-public-searxng.example
 JINA_READER_ENABLED=true
-WEB_RESEARCH_USER_AGENT=LumenResearchBot/1.0 (contact: you@example.com)
 WEB_RESEARCH_USER_AGENT=AiAgentResearchBot/1.0 (contact: you@example.com)
 ```
 
